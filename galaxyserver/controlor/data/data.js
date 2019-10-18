@@ -33,6 +33,7 @@ module.exports = {
     addNews:async function(data){
         let sql = 'insert into news(img,time,title,text) values(?)'
         let result = await query(sql,[data])
+        console.log(result)
         return result;
     },
 
@@ -115,7 +116,7 @@ module.exports = {
 
     // 添加合作伙伴
     addalliance:async function(data){
-        let sql = 'insert into alliance(name,img) values(?)'
+        let sql = 'insert into alliance(name,img,class) values(?)'
         let result = await query(sql,[data])
         return result;
     },
@@ -132,8 +133,15 @@ module.exports = {
     },
     //获取合作伙伴
     getalliance:async function(){
-        let sql = 'select * from alliance'
+        let sql = 'select * from alliance '
         let result = await query(sql,'')
+        return result;
+    },
+
+    // 通过分类获取合作伙伴
+    getallianceBy:async function(data){
+        let sql = 'select * from alliance where class = ?'
+        let result = await query(sql,data)
         return result;
     },
 
@@ -201,8 +209,9 @@ module.exports = {
 
     // 添加招聘信息
     addadvertise:async function(data){
-        let sql = 'insert intoinsert into job(section,name,place) values(?)'
-        let result = await query(sql,data)
+        let sql = 'insert into job(section,name,place) values(?)'
+        let result = await query(sql,[data])
+        return result;
     },
 
     // 查询是否存在该招聘信息
@@ -228,7 +237,42 @@ module.exports = {
         let sql = 'delete from job where id = ?'
         let result = await query(sql,data)
         return result;
+    },
+
+    // 新增留言
+    addmessage:async function(data){
+        let sql = 'insert into message(name,number,email,tel,message) values(?)'
+        let result = await query(sql,[data])
+        return result;
+    },
+
+
+    // 获取留言
+    getmessage:async function(data){
+        let sql = 'select * from message order by createTime desc'
+        let result = await query(sql,'')
+        return result;
+    },
+
+    // 判断留言是否存在
+    querymessage: async function(data){
+        let sql = 'select * from message where id = ?'
+        let result = await query(sql,data)
+        if(result>0){
+            return false;/*这条留言存在*/
+        }else{
+            return true;/*这条留言不存在*/
+        }
+    },
+
+
+    // 删除留言
+    deletemessage:async function(data){
+        let sql = 'delete from message where id = ?'
+        let result = await query(sql,data)
+        return result;
     }
+
 
 
 

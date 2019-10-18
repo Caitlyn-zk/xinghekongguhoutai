@@ -5,5 +5,6 @@ let dynamic = require("./dynamic")
 let alliance = require("./alliance")
 let video = require("./video")
 let advertise = require('./advertise')
-let obj = Object.assign({},login,news,dynamic,alliance,video,advertise)
+let message = require("./message")
+let obj = Object.assign({},login,news,dynamic,alliance,video,advertise,message)
 module.exports = obj

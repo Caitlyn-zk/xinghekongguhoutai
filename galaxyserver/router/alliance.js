@@ -21,7 +21,16 @@ module.exports = {
                 })
             }else{
                 let name = req.body.name
+                let classify = req.body.classify
                 let img = req.files[0].filename
+                console.log(classify)
+                if(!classify){
+                    res.json({
+                        status:555,
+                        message:'请输入分类'
+                    })
+                    return false;
+                }
                 if(!name){
                     res.json({
                         status:522,
@@ -37,7 +46,7 @@ module.exports = {
                     return false;
                 }
         
-                let arr = [name,img]
+                let arr = [name,img,classify]
                 let result = data.addalliance(arr)
                 if(result){
                     res.json({
@@ -58,7 +67,7 @@ module.exports = {
 
     // 获取合作伙伴
     getalliance:async function(req,res){
-        let result = data.getalliance()
+        let result =await data.getalliance()
         if(result){
             res.json({
                 status:200,
@@ -74,9 +83,36 @@ module.exports = {
         }
     },
 
+
+    // 通过分类获取合作伙伴
+    getallianceByClass:async function(req,res){
+        let classify = req.body.classify
+        console.log(classify)
+        if(!classify){
+            res.json({
+                status:555,
+                message:'请确认分类查询合作伙伴的classify'
+            })
+            return false;
+        }
+        let result = await data.getallianceBy(classify)
+        if(!result){
+            res.json({
+                status:556,
+                message:'分类查询失败'
+            })  
+        }else{
+            res.json({
+                status:200,
+                data:result,
+                message:'分类查询成功'
+            })            
+        }
+    },
+
     // 修改合作伙伴
-    updatealliance:async function(req,res){
-        upload(req,res,function(err){
+    updatealliance:function(req,res){
+        upload(req,res,async function(err){
             if(err){
                 return res.json({
                     status:531,
@@ -84,7 +120,7 @@ module.exports = {
                 })
             }else{
                 let name = req.body.name
-                let img = req.files[0].img
+                let img = req.files[0].filename
                 let id = req.body.id
                 if(!name){
                     res.json({
@@ -107,7 +143,7 @@ module.exports = {
                     })
                 }
                 let arr = [name,img,id]
-                let result = data.updatealliance(arr)
+                let result =await data.updatealliance(arr)
                 if(result){
                     res.json({
                         status:200,

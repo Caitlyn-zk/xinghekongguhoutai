@@ -20,7 +20,7 @@
      * window.UEDITOR_HOME_URL = "/xxxx/xxxx/";
      */
     // var URL = window.UEDITOR_HOME_URL || getUEBasePath();
-    var URL = 'http://127.0.0.1:3000/'
+    var URL = 'http://192.168.97.251:3000/'
     /**
      * 配置项主体。注意，此处所有涉及到路径的配置别遗漏URL变量。
      */

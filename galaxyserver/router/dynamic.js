@@ -40,6 +40,13 @@ module.exports = {
             }else{
                 let arr = common.Data(req,res)
                 let classify = req.body.classify
+                if(!classify){
+                    res.json({
+                        status:555,
+                        message:'请确认分类'
+                    })
+                    return false;
+                }
                 arr.push(classify)
                 let result = await data.adddynamic(arr)
                 if(result){
@@ -78,11 +85,12 @@ module.exports = {
     // 通过分类获取动态
     getdynamicByClass:async function(req,res){
         let classify =  req.body.classify
-        let result = data.getdynamicByClass(classify)
+        let result =await data.getdynamicByClass(classify)
         if(result){
             res.json({
                 status:200,
-                message:'通过分类获取动态成功'
+                message:'通过分类获取动态成功',
+                data:result
             })
         }else{
             res.json({

@@ -1,0 +1,73 @@
+
+后台接口文档
+
+所有接口前加 http://192.168.97.251
+
+获取新闻接口：/getnews   已测试成功
+更改新闻接口：/updatenews  已测试成功
+更改新闻需要传的参数：需要注意
+Input 框的name属性应该设为如下的key 
+
+
+删除新闻接口：/deletenews  已测试成功
+删除新闻传的参数为id 类型为
+添加新闻接口：/addnews   已测试成功
+ 
+
+
+获取动态接口：/getdynamic已测试成功
+通过分类获取动态接口：/getdynamicByClass 已测试成功
+ 此处记得判断data的长度再向页面渲染
+更改动态接口：/updatedynamic 已测试成功
+
+
+删除动态接口：/deletedynamic已测试成功
+
+添加动态接口：/adddynamic已测试成功
+
+
+获取视频接口：/getvideo  已测试成功
+更改视频接口：/updatevideo已测试成功
+ 
+删除视频接口：/deletevideo 已测试成功
+ 
+添加视频接口：/addvideo已测试成功
+ 
+
+获取合作伙伴接口：/getalliance已测试成功
+更改合作伙伴接口：/updatealliance已测试成功
+
+删除合作伙伴接口：/deletealliance已测试成功
+
+添加合作伙伴接口：/addalliance  已测试成功
+ 
+通过分类获取合作伙伴接口： /getallianceByClass已测试成功
+ 
+
+获取招聘信息：/getadvertise  已测试成功
+更改招聘信息：/updateadvertise已测试成功
+
+添加招聘信息：/addadvertise 已测试成功 
+ 
+删除招聘信息：/deleteadvertise已测试成功
+ 
+
+后台登录接口：    /login  已测试成功
+
+ 
+后台验证登录接口：/verifylogin
+
+用户留言 添加 接口：/addmessage 已测试成功
+
+
+用户留言 删除接口 /deletemessage已测试成功
+ 
+获取用户留言 ：/getmessage 已测试成功
+
+图片或者视频路径前缀API
+动态图片    		dynamicAPI =  http://192.168.97.251:3000/dynamic/
+新闻图片 		newsAPI = http://192.168.97.251:3000/news/
+合作伙伴图片		allianceAPI = http://192.168.97.251:3000/alliance/
+星河视频			video = http://192.168.97.251:3000/video/
+富文本                   uEditor = http://192.168.97.251:3000/index.html
+富文本提交的内容         uEditorContent = http://192.168.97.251:3000/img

@@ -30,6 +30,7 @@ module.exports = {
                     })
                 }else{
                     let addNews = await data.addNews(arr)
+                    console.log(addNews)
                     if(!addNews){
                         res.json({
                             status:511,
@@ -67,6 +68,7 @@ module.exports = {
     // 更改新闻
     updateNews:function(req,res){
         upload(req,res,async function(err){
+            console.log(err)
             if(err){
                 return res.json({
                     status:531,
@@ -105,6 +107,13 @@ module.exports = {
     // 删除新闻
     deletNews:async function(req,res){
         let id = req.body.id
+        if(!id){
+            res.json({
+                status:553,
+                message:'请确认id'
+            })
+            return false;
+        }
         let resulet = await data.deletNews(id)
         if(resulet){
             res.json({

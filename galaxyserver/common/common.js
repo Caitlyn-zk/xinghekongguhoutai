@@ -12,6 +12,7 @@ module.exports = {
      * @param {String} text 新闻详情
      */
     Data:function(req,res){
+        console.log(req.files)
         let img = req.files[0].filename
         let time = req.body.time
         let title = req.body.title
